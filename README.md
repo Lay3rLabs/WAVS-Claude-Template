@@ -112,7 +112,7 @@ forge test
 
 ## Create Components with Claude Code
 
-After following all setup instructions and installing Claude Code, you ar5e ready to make a component!
+After following all setup instructions and installing Claude Code, you are ready to make a component!
 
 1. In the root of your project, run the following command to start Claude Code:
 
@@ -172,7 +172,7 @@ Claude may try to run the `make wasi-exec` command themselves. You should prompt
 - Feel free to update [claude.md](/claude.md) for your specific purposes or if you run into regular errors.
 - Claude can sometimes try to over-engineer its fixes for errors. If you feel it is not being productive, delete the component, clear claude with `/clear`, and try again. You may need to adjust your prompt.
 - If you are building a complex component, it may be helpful to have Claude build a simple component first and then expand upon it.
-- Claude may try to fix warnings unnecessarily. You can Tell Claude to ignore minor warnings and any errors found in bindings.rs (it is auto-generated).
+- Claude may try to fix warnings unnecessarily. You can tell Claude to ignore minor warnings and any errors found in bindings.rs (it is auto-generated).
 
 ### Prompting
 
@@ -201,7 +201,7 @@ The [`/examples`](/examples/) directory contains multiple one-shot examples buil
 
 ### Start Environment
 
-Start an Ethereum node (anvil), the WAVS service, and deploy [eigenlayer](https://www.eigenlayer.xyz/) contracts to the local network.
+Start an Ethereum node (anvil), the WAVS service, and deploy [EigenLayer](https://www.eigenlayer.xyz/) contracts to the local network.
 
 ```bash
 cp .env.example .env
