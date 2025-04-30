@@ -41,3 +41,9 @@ make wasi-exec
 ```
 
 Note: The input "1" corresponds to Bitcoin (CoinMarketCap ID 1).
+
+
+export TRIGGER_DATA_INPUT=`cast abi-encode "f(string)" "dabit3"`
+export COMPONENT_FILENAME=warpcast_eigenlayer_tracker.wasm
+export SERVICE_CONFIG="'{\"fuel_limit\":2000000000,\"max_gas\":50000000,\"host_envs\":[],\"kv\":[],\"workflow_id\":\"default\",\"component_id\":\"default\"}'"
+make wasi-exec
