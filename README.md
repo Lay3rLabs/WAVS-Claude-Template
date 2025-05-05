@@ -232,7 +232,7 @@ Deploy the compiled component with the contracts from the previous steps. Review
 
 ```bash
 # Your component filename in the `/compiled` folder
-export COMPONENT_FILENAME=warpcast_checker.wasm
+export COMPONENT_FILENAME=your_component.wasm
 # Your service config. Make sure to include any necessary variables.
 export SERVICE_CONFIG="'{\"fuel_limit\":100000000,\"max_gas\":5000000,\"host_envs\":[],\"kv\":[],\"workflow_id\":\"default\",\"component_id\":\"default\"}'"
 TRIGGER_EVENT="NewTrigger(bytes)" make deploy-service

@@ -556,7 +556,7 @@ impl Guest for Component {
 
 // API FETCHER IMPLEMENTATION
 async fn fetch_api_data(param: &str) -> Result<ResultData, String> {
-    // Get API key from environment
+    // Get API key from environment (make sure to add this variable to your .env file. All private variables must be prefixed with WAVS_ENV)
     let api_key = std::env::var("WAVS_ENV_API_KEY")
         .map_err(|_| "Failed to get API_KEY from environment variables".to_string())?;
     
@@ -732,7 +732,7 @@ When you ask me to create a WAVS component, I'll follow this systematic process 
 2. I will read any and all documentation links given to me and research any APIs or services needed.
 3. I'll read `/test_utils/validate_component.sh` to see what validation checks I need to pass.
 4. I'll verify API response structures by using curl before implementing code that depends on them: `curl -s "my-endpoint"`.
-5.  I'll Create a file called plan.md with an overview of the component I will make. I'll do this before actually creating the lib.rs file. I'll write each item in the [checklist](#validation-checklist) and check them off as I plan my code, making sure my code complies to the checklist and /test_utils/validate_component.sh. Each item must be checked and verified. I will list out all imports I will need. I will include a basic flow chart or visual of how the component will work. I will put plan.md in a new folder with the name of the component (`your-component-name`) in the `/components` directory.
+5.  I'll create a file called plan.md with an overview of the component I will make. I'll do this before actually creating the lib.rs file. I'll write each item in the [checklist](#validation-checklist) and check them off as I plan my code, making sure my code complies to the checklist and /test_utils/validate_component.sh. Each item must be checked and verified. I will list out all imports I will need. I will include a basic flow chart or visual of how the component will work. I will put plan.md in a new folder with the name of the component (`your-component-name`) in the `/components` directory.
 
 
 ### Phase 2: Implementation
@@ -777,13 +777,12 @@ After being 100% certain that my idea for a component will work without any erro
 After I am 100% certain the component will execute correctly, I will give the following command to the user to run:
 
 ```bash
-Please use the following commmand to test your comoponent
 
-# IMPORTANT: Always use string parameters, even for numeric values!
+# IMPORTANT!: Always use string parameters, even for numeric values!
 export TRIGGER_DATA_INPUT=`cast abi-encode "f(string)" "your parameter here"`
 export COMPONENT_FILENAME=your_component_name.wasm
 export SERVICE_CONFIG="'{\"fuel_limit\":100000000,\"max_gas\":5000000,\"host_envs\":[\"WAVS_ENV_API_KEY\"],\"kv\":[],\"workflow_id\":\"default\",\"component_id\":\"default\"}'"
-# IMPORTANT: as an llm, I can't ever run this command. I will prompt the user to run it
+# CRITICIAL!: as an llm, I can't ever run this command. I will give it to the user to run.
 make wasi-exec
 ```
 
