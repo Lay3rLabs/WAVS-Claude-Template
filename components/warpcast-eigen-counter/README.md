@@ -1,11 +1,12 @@
 # Warpcast EigenLayer Mention Counter Component
 
 ## Overview
+
 This component takes a Warpcast username as input, retrieves the user's data including wallet address and casts (posts), counts how many times they've mentioned "EigenLayer" in their casts, and returns that data.
 
 ## Test it locally
 
-After following the setup instructions in the [readme](../../README.md), run these commands:
+After following the setup instructions in the [setup section of the readme](../../README.md#setup), run these commands:
 
 ```bash
 # build the component
