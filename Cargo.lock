@@ -3081,9 +3081,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "warpcast-eigenlayer-tracker"
+name = "warpcast-eigen-counter"
 version = "0.3.0"
 dependencies = [
+ "alloy-primitives",
  "alloy-sol-macro",
  "alloy-sol-types",
  "anyhow",
