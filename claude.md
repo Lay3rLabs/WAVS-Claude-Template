@@ -223,27 +223,37 @@ let result = process_data(&data_clone);
 ### 4. Network Requests
 
 ```rust
-use wstd::runtime::block_on;  // Required for async
-use wavs_wasi_chain::http::{fetch_json, http_request_get};
+use wstd::runtime::block_on;
+use wavs_wasi_chain::http::{fetch_json, http_request_get, http_request_post_json, http_request_post_form};
 use wstd::http::HeaderValue;
 
-async fn make_request() -> Result<ResponseType, String> {
-    let url = format!("https://api.example.com/endpoint?param={}", param);
-    
-    // Create request with headers
-    let mut req = http_request_get(&url)
-        .map_err(|e| format!("Failed to create request: {}", e))?;
-    
-    req.headers_mut().insert("Accept", HeaderValue::from_static("application/json"));
+// GET request
+async fn make_get_request(url: &str) -> Result<ResponseType, String> {
+    let req = http_request_get(url).map_err(|e| e.to_string())?;
     
     // Parse JSON response - response type MUST derive Clone
-    let response: ResponseType = fetch_json(req).await
-        .map_err(|e| format!("Failed to fetch data: {}", e))?;
-    
+    let response: ResponseType = fetch_json(req).await.map_err(|e| e.to_string())?;
     Ok(response)
 }
 
-// Use block_on in component logic
+// POST request with JSON body
+async fn make_json_post<T: serde::Serialize>(url: &str, data: &T) -> Result<ResponseType, String> {
+    // Creates request with data serialized as JSON
+    let mut req = http_request_post_json(url, data).map_err(|e| e.to_string())?;
+    
+    // Add auth header if needed
+    let auth_header = format!("Bearer {}", api_key);
+    req.headers_mut().insert(
+        "Authorization", 
+        HeaderValue::from_str(&auth_header).map_err(|e| e.to_string())?
+    );
+    
+    // Parse JSON response - response type MUST derive Clone
+    let response: ResponseType = fetch_json(req).await.map_err(|e| e.to_string())?;
+    Ok(response)
+}
+
+// Use with block_on in synchronous context
 fn process_data() -> Result<ResponseType, String> {
     block_on(async { make_request().await })
 }
